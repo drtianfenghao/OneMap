@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>一张图实验</title>
+
+{#    原3.19版本#}
+    <link  rel="stylesheet"  type="text/css" href="http://localhost/arcgisforjs/3.19/dijit/themes/tundra/tundra.css"/>
+    <link  rel="stylesheet"  type="text/css" href="http://localhost/arcgisforjs/3.19/esri/css/esri.css" />
+    <link  rel="stylesheet"  type="text/css" href="http://localhost/arcgisforjs/3.19/dojox/grid/resources/Grid.css" />
+    <script  type="text/Javascript" src="http://localhost/arcgisforjs/3.19/init.js"></script>
+    <script  type="text/Javascript" src="http://localhost/arcgisforjs/3.19/esri/css/esri.css"></script>
+
+
+{#    4.9版本#}
+{#    <link rel="stylesheet" href="http://localhost/arcgisforjs/4.9/dijit/themes/claro/claro.css" />#}
+{#    <link rel="stylesheet" href="http://localhost/arcgisforjs/4.9/esri/css/main.css" />#}
+{##}
+{#    <script src="http:/localhost/arcgisforjs/4.9/dojo/dojo.js"></script>#}
+{#    <script  type="text/Javascript" src="http://localhost/arcgisforjs/4.9/init.js"></script>#}
+
+
+
+    <link rel="stylesheet" type="text/css" href="http://localhost/jq/resources/jquery/demo/demo.css"><!--原代码http://localhost/jq/resources/jquery/demo.css-->
+    <script type="text/javascript" src='http://localhost/jq/resources/jquery/jquery-1.7.2.min.js'></script>
+    <link rel="stylesheet" type="text/css" href='http://localhost/jq/resources/jquery/themes/gray/easyui.css'>
+    <link rel="stylesheet" type="text/css" href="http://localhost/jq/resources/jquery/themes/icon.css">
+{#    <script type="text/javascript" src='http://localhost/chart/Chart.bundle.min.js'></script>#}
+    <script type="text/javascript" src='http://localhost/jq/resources/jquery/jquery.easyui.min.js'></script>
+    <script type="text/javascript" src='http://localhost/jq/resources/jquery/locale/easyui-lang-zh_CN.js' charset="utf-8"></script>
+    <script src="../static/js/jsonConverters.js"></script>
+
+    <script type="text/javascript" src="../static/js/loadmap.js"></script>
+{#    <script type="text/javascript" src="../static/js/MapConfig.js"></script>#}
+{#    <script type="text/javascript" src="../static/js/AddLayer.js"></script>#}
+{#    <script type="text/javascript" src="../static/js/Main.js"></script>#}
+
+
+    <style type="text/css">
+        .parent{
+            position: relative;
+            height: 95.5%;
+            width: 99.9%;
+            margin:0 auto;
+            {#border: 0.1px solid #000000;#}
+        }
+        .child{
+            z-index: 99;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 2%;
+        }
+        .MapClass{
+            width:100%;
+            height:600px;
+            border:1px solid #000;
+        }
+        .buttonclass{
+            background:none
+        }
+       .loadimg{
+            background-image:url(../static/image/bz2.jpg);
+			background-repeat:no-repeat;
+			text-align:center;
+    		font-family:楷体;
+			font-size:20px;
+
+        }
+		.maptoolbox{
+
+			opacity:1;
+		}
+		.window_input{
+
+			width: 200px;
+			height: 13px;
+			margin-bottom: 10px;
+			outline: none;
+			padding: 10px;
+			font-size: 13px;
+		}
+
+
+    </style>
+</head>
+
+<body class="easyui-layout">
+<!--上部图片及表头-->
+<div class='loadimg' data-options="region:'north',split:true,maxHeight:'5%'" style="width:200px;height:5%;padding:5px;">
+国土资源一张图地图服务
+
+</div>
+<!--左侧菜单-->
+<div data-options="region:'west',split:true,title:'菜单'" style="width:250px;padding:0px;">
+    <div class="easyui-tabs" style="width:40px;height:80px;" tabPosition="bottom" headerWidth="40"data-options=" fit:true,border:false">
+        <div id="panelHeader" title="地图服务" ><br />
+            <ul id="toc" class="easyui-tree" ></ul>
+        </div>
+
+        <div title="分析工具" >
+            <a  href="#" id="spatial_zd" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-Overlay',size:'large',iconAlign:'top'">叠加分析</a>
+            <a  href="#" id="spatial_xz" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-toolbox',size:'large',iconAlign:'top'">现状分析</a>
+            <a  href="#" id="spatial_jbnt" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-toolbox',size:'large',iconAlign:'top'">基本农田分析</a>
+
+        </div>
+         <div title="专题图制作" >
+            <a  href="#" id="ZT_RL" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-Overlay',size:'large',iconAlign:'top'">热力图</a>
+            <a  href="#" id="ZT_JH" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-toolbox',size:'large',iconAlign:'top'">聚合图</a>
+
+
+        </div>
+        <div title="导入工具">
+            <a  href="#" id="txt_to_polygon" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-DataAdd',size:'large',iconAlign:'top'">导入文件坐标工具</a>
+            <div id="txt_to_polygon_win" class="easyui-window" title="导入文件" closed=true style="width:500px;height:400px" >
+                投影系统设置
+                <div data-options="region:'north'" style="height: 30% ;width:70%;border:1px solid #000; ">
+                </div>
+                数据文件
+                <div id="data" data-options="region:'south',split:true, " style="height:50%; width:70%;border:1px solid #000; ">
+
+                </div>
+
+                <input type="file" name="upload" id="upload" accept="text/plain"  autocomplete="off" />
+                <input type="button" name="upload" value="取消" id="cancel" accept="text/plain"/>
+                <input type="button" name="upload" value="确定" id="ok" accept="text/plain"/>
+
+
+            </div>
+            <a  href="#" id="shp_to_polygon" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-DataAdd',size:'large',iconAlign:'top'">导入shp工具</a>
+            <div id="shp_to_polygon_win" class="easyui-window" title="导入文件" closed=true style="width:500px;height:400px" >
+                投影系统设置
+                <div data-options="region:'north'" style="height: 30% ;width:70%;border:1px solid #000; ">
+                </div>
+                数据文件
+                <div id="data" data-options="region:'south',split:true, " style="height:50%; width:70%;border:1px solid #000; ">
+
+                </div>
+
+                <input type="file" name="上传shp文件" id="shpzip_upload" accept="application/zip"  autocomplete="off" />
+                <input type="button" name="upload" value="取消" id="shp_to_polygon_cancel" />
+                <input type="button" name="upload" value="上传" id="shp_to_polygon_ok" />
+
+
+            </div>
+            <!-- 缓冲区分析
+            <a  href="#" id="buf" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-toolbox',size:'large',iconAlign:'top'">缓冲区分析</a></br>
+			缓冲区距离：<input type="text" id="shiyantext" size="20" /><br />
+			-->
+        </div>
+
+        <div title="辅助工具" >
+			<a  href="#" id="Btn" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-toolbox',size:'large',iconAlign:'top'">绘制多边形</a>
+            <a  href="#" id="Btn1" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-toolbox',size:'large',iconAlign:'top'">绘制点</a>
+
+
+        </div>
+
+    </div>
+</div>
+
+<!--中间部件和地图窗口-->
+<div data-options="region:'center'" style="height: 100%; ">
+    <div class="maptoolbox" style="padding:2px; height: 2%; ">
+
+
+		<!--高级检索
+		<a id="hsearch" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" >高级检索</a>
+
+		<div data-options="region:'north'" style="height: 30%;border:1px solid #000; ">
+			<input id="jqsearch" ></input>
+			<div id="mm" >
+            <div data-options="name:'0'">城区规划2013</div>
+            <div data-options="name:'1'">建设用地供应界线</div>
+            <div data-options="name:'2'">地籍宗地</div>
+			<div data-options="name:'3'">建设用地管制区</div>
+			<div data-options="name:'4'">土地规划地类</div>
+			<div data-options="name:'5'">全国第二次土地调查</div>
+            </div>
+		</div >
+		<div id="gridDiv" data-options="region:'south',split:true,title:'属性' " style="height: 69%; border:1px solid #000; ">
+
+		</div>
+		</div>
+		-->
+        <!--增加按钮
+        <a id="aa" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" style="float:right" >easyui</a>
+		-->
+
+
+		<!--打印-->
+		<a  href="#" id="print" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-print'"style="float:right" ></a>
+
+
+        <!--设置量算单位-->
+         <a  href="#" id="set_measure" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-set'"style="float:right" ></a>
+         <div id="set_win" class="easyui-window" title="设置测量单位" closed=true style="width:300px;height:300px" >
+             <div data-options="region:'north'" style="height: 30% ;width:100%;">
+                 测量距离单位：<input id="set_length_measure"  class="easyui-combobox" value="选择距离单位" style="width: 150px"/>
+             </div>
+             <div data-options="region:'center'" style="height: 30% ;width:100%;">
+                 测量面积单位：<input id="set_area_measure"  class="easyui-combobox" value="选择面积单位" style="width: 150px"/>
+             </div>
+             <div data-options="region:'south'" style="padding: 5px; text-align: center;">
+                <a href="#" id="set_measure_ok"class="easyui-linkbutton" icon="icon-ok">Ok</a>
+            </div>
+
+         </div>
+
+
+		<!--卷帘对比-->
+         <a  href="#" id="swipe" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-swipe'"style="float:right" ></a>
+{#         <a href="javascript:void(0)" id="swipe" toggle="true"   data-options=" iconCls:'icon-swipe'"style="float:right" ></a>#}
+         <div id="swipe_win" class="easyui-window" title="卷帘对比" closed=true style="width:200px;height:150px" >
+
+{#              <div id="full_extent1" data-options="iconCls:'icon-fullextend'">全图显示</div>#}
+{#                <div id="zoom_in1"data-options="iconCls:'icon-zoomin'">放大</div>#}
+             <div data-options="region:'north'" style="height: 20% ;width:100%;">
+                 <input id="swipe_check" value="选择对比图层" style="width: 150px">
+             </div>
+             <div data-options="region:'south'" style="height: 40% ;width:150px;">
+                 <input id="verticalswipe" type="checkbox" name="lang" value="01" )><span style="float:left" >垂直分割</span><br />
+                 <input id='horizontalswipe' type="checkbox" name="lang" value="02" ><span style="float:left" >水平分割</span><br />
+             </div>
+
+
+         </div>
+
+
+
+
+
+
+        <!--地图显示菜单-->
+        <a href="javascript:void(0)" id="view" data-options="iconCls:'icon-zoom'"style="float:right" ></a>
+        <div id="maptools" style="width: 150px">
+            <div id="full_extent" data-options="iconCls:'icon-fullextend'">全图显示</div>
+            <div id="zoom_in"data-options="iconCls:'icon-zoomin'">放大</div>
+            <div id="zoom_out"data-options="iconCls:'icon-zoomout'">缩小</div>
+        </div>
+        <!--测距离-->
+        <a href="javascript:void(0)" id="measure" data-options="iconCls:'icon-measure'"style="float:right" ></a>
+        <div id="measuringtools" style="width: 150px">
+            <div id="measuringarea" data-options="iconCls:'icon-measurearea'">测量面积</div>
+            <div id="measuringlength"data-options="iconCls:'icon-measurelength'">测量距离</div>
+        </div>
+        <!--选择-->
+        <a href="javascript:void(0)" id="select" toggle="true"   data-options=" iconCls:'icon-select'"style="float:right" ></a>
+        <div id="selecttools" style="width: 150px">
+            <div id="selectpolygon" data-options="iconCls:'icon-selectpolygon'">选择面</div>
+            <div id="createpolygon"data-options="iconCls:'icon-createpolygon'">绘图</div>
+        </div>
+        <!--清除选择-->
+        <a  href="#" id="Clear" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-clearmap'"style="float:right" ></a>
+
+        <!--平移-->
+        <a  href="#" id="pan" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-pan'"style="float:right" ></a>
+
+        <!--查询-->
+		<a  href="#" id="querytool" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-search'"style="float:right" ></a>
+        <div id="querytool_win" class="easyui-window" title="图层属性查询" closed=true style="width:500px;height:500px" >
+{#                属性设置#}
+                <div data-options="region:'north'" style="height: 5% ;width:100%;">
+                    数据表：<input id="select_layer" class="easyui-combobox" name="dept" value="选择图层" style="width: 100px"/> 字段：<input id="select_fields" class="easyui-combobox" name="dept"  style="width: 100px"/>查询值：<input id="select_values" type="text" style="width: 100px"/><a  href="#" id="search_ok" plain="true" selected="true" class='easyui-linkbutton' data-options="iconCls:'icon-zoom'" ></a>
+                </div>
+{#                数据文件#}
+                <!--下侧属性窗口-->
+
+                <div id="gridDiv1"  data-options="region:'south'"
+                     style="width: 100%; height:95%;">
+                    <div  id="Table_Tab" class="easyui-tabs" style="width: 100%; height:90%;"data-options="fit:true">
+
+{#                        <table id="dg" class="easyui-datagrid" data-options="fitColumns:true,singleSelect:true,rownumbers:true" pagination="true"  fit="true"></table>#}
+                    </div>
+                </div>
+        </div>
+
+              <div id="showfigure" class="easyui-window" title="查询结果" closed=true style="width:500px;height:400px" >
+                <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+            <div id="showsearchdata" class="easyui-window" title="查询结果" closed=true style="width:500px;height:400px" >
+                <div id="showhtmldata"></div>
+            </div>
+
+
+
+
+
+</div>
+<!--地图窗口-->
+<div id="mapDiv" class="parent" >
+    <div id="stat_win" class="easyui-window" title="设置统计字段" closed='true' style="width:600px;height:400px"
+         data-options="iconCls:'icon-save',modal:true">
+        <input id="stat_form" value="001">
+    </div>
+    <div  class="child" id='loadxy'>
+        <center><label>X坐标 = </label><label id='x' > </label>
+            <label>,Y坐标 = </label><label id='y' ></label></center>
+    </div>
+</div>
+
+
+
+<!--右侧工具箱窗口
+<div id="" data-options="region:'east',split:true,title:'工具箱'" style="width:200px;padding:10px;">
+</div>
+-->
+
+</body>
+</html>

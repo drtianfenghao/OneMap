@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="icon" href="../static/icon/Themeico/favicon.ico" type="image/ico" />
+
+    <title>Drtian WebGIS Desktop||Author:DrTian</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/Theme/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../static/Theme/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../static/Theme/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../static/Theme/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- select -->
+    <link href="../static/Theme/scripts/select/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="../static/Theme/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+      <!-- select -->
+    <!-- bootstrap-progressbar -->
+    <link href="../static/Theme/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../static/Theme/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="../static/Theme/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../static/Theme/build/css/custom.min.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+    <!-- 左侧菜单-->
+    <div class="container body " data-spy="scroll">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+
+                <div class="left_col scroll-view " >
+
+                    <div class="navbar nav_title" style="border: 0;">
+                      <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Drtian WebGIS Desktop</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                      <div class="menu_section">
+                        <h3>General</h3>
+                        <ul class="nav side-menu">
+                          <li ><a ><i class="fa fa-table"></i> 属性 <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <li><a href="#" id="layer_widgets">编辑图层</a></li>
+                                <li><a href="#" id="open_table_window">编辑属性</a></li>
+                            </ul>
+                          </li>
+                          <li><a><i class="fa fa-edit"></i> 工具 <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+
+                                <li><a href="#" id="edit_widgets">编辑工具</a></li>
+                                <li><a href="#" id="measure_widgets">测量工具</a></li>
+                                <li><a href="#">统计工具</a></li>
+                            </ul>
+                          </li>
+                          <li><a><i class="fa fa-desktop"></i> 专题 <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                              <li><a href="#">热力图</a></li>
+                              <li><a href="#">聚合图</a></li>
+                            </ul>
+                          </li>
+                          <li><a><i class="fa fa-table"></i> 机器算法 <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                              <li><a href="#">贝叶斯网络推测</a></li>
+                              <li><a href="#">BP神经网络</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+{#                    <div class="sidebar-footer hidden-small">#}
+{#                      <a data-toggle="tooltip" data-placement="top" title="Settings">#}
+{#                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>#}
+{#                      </a>#}
+{#                      <a data-toggle="tooltip" data-placement="top" title="FullScreen">#}
+{#                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>#}
+{#                      </a>#}
+{#                      <a data-toggle="tooltip" data-placement="top" title="Lock">#}
+{#                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>#}
+{#                      </a>#}
+{#                      <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">#}
+{#                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>#}
+{#                      </a>#}
+{#                    </div>#}
+                    <!-- /menu footer buttons -->
+
+          </div>
+
+
+        </div>
+        </div>
+    </div>
+
+
+    <!-- 中间主要窗口-->
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-13   left_col">
+                <div class="left_col scroll-view">
+                    <!-- top navigation -->
+                    <div class="top_nav">
+                        <div class="nav_menu">
+                            <nav>
+                                <div class="nav toggle">
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                              </div>
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="">
+                                        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <img src="../static/icon/Themeico/user.png" alt="">Admin
+                                            <span class=" fa fa-angle-down"></span>
+                                          </a>
+                                        <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="javascript:;"> Profile</a></li>
+                                    <li>
+                                      <a href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Settings</span>
+                                      </a>
+                                    </li>
+                                    <li><a href="javascript:;">Help</a></li>
+                                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                  </ul>
+                                    </li>
+                                    <li role="presentation" class="dropdown">
+                                        <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa fa-envelope-o"></i>
+                                            <span class="badge bg-green">6</span>
+                                        </a>
+                                        <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                            <li>
+                                                <a>
+                                                  <span class="image"><img src="../static/icon/Themeico/user.png" alt="Profile Image" /></span>
+                                                  <span>
+                                                  <span>John Smith</span>
+                                                  <span class="time">3 mins ago</span>
+                                                </span>
+                                                  <span class="message">
+                                                  Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                  </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="text-center">
+                                                    <a>
+                                                        <strong>See All Alerts</strong>
+                                                        <i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- /top navigation -->
+
+                    <!-- page content -->
+                    <div class="right_col" role="main">
+                        <div class="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="x_panel">
+                                        <div class="x_content">
+                                            <div class="row " style=" width: 100%;height:600px">
+
+                                              <!-- /MAIL LIST -->
+
+                                              <!-- CONTENT MAIL -->
+
+                                                <div id="mapDiv" class="col-md-12" style="height:100%"></div>
+
+
+                                              <!-- /CONTENT MAIL -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /page content -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 图层属性查询窗口 默认关闭-->
+    <div id="table_window" class="easyui-window" title="图层属性查询" closed=true style="width:700px;height:600px" >
+        <!-- 属性设置 -->
+        <div class="container body">
+            <div class="main_container">
+                <div class="row" style="padding:5px;">
+
+                    <div class="col-lg-4">
+                           <div class="input-group">
+                                <span class="input-group-addon">数据表</span>
+                                <select  id="select_layer" class="selectpicker form-control " aria-describedby="basic-addon1"></select>
+                            </div>
+                        </div>
+                    <div class="col-lg-4">
+                         <div class="input-group">
+                             <span class="input-group-addon" id="basic-addon2">字段</span>
+                             <select  id="select_fields" class="selectpicker form-control"  aria-describedby="basic-addon2" ></select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                 <div class="form-group">
+                                     <input type="text" id="select_values" placeholder="请输入查询值！" class="form-control">
+                                 </div>
+                            </div>
+                            <div class="col-lg-1">
+                                 <button type="submit" id="search_ok" class="btn btn-success">
+                                     <span class="glyphicon glyphicon-search">查询</span>
+                                 </button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12" style="height: 500px">
+                        <div  id="Table_Tab" class="easyui-tabs" data-options="fit:true"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- 编辑工具栏-->
+    <div id="edit_toolbar" class="tool-edit-div">
+        <button class="tool-edit-action-button esri-icon-blank-map-pin" id="pointButton"
+                type="button" title="Draw point"></button>
+        <button class="tool-edit-action-button esri-icon-polyline" id="polylineButton" type="button"
+                title="Draw polyline"></button>
+        <button class="tool-edit-action-button esri-icon-polygon" id="polygonButton" type="button"
+                title="Draw polygon"></button>
+        <button class="tool-edit-action-button esri-icon-checkbox-unchecked" id="rectangleButton"
+                type="button" title="Draw rectangle"></button>
+        <button class="tool-edit-action-button esri-icon-radio-unchecked" id="circleButton"
+                type="button" title="Draw circle"></button>
+        <button class="tool-edit-action-button esri-icon-trash" id="resetBtn" type="button"
+                title="Clear graphics"></button>
+    </div>
+
+    <!--测量工具栏-->
+     <div id="measure_topbar">
+         <button class="tool-edit-action-button esri-icon-minus" id="distanceButton" type="button"
+          title="Measure distance between two or more points"></button>
+         <button class="tool-edit-action-button esri-icon-polygon" id="areaButton" type="button"
+          title="Measure area"></button>
+     </div>
+
+
+    <!-- jQuery -->
+    <script src="../static/Theme/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../static/Theme/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../static/Theme/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../static/Theme/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="../static/Theme/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="../static/Theme/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="../static/Theme/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="../static/Theme/vendors/iCheck/icheck.min.js"></script>
+    <!-- Switchery -->
+    <script src="../static/Theme/vendors/switchery/dist/switchery.min.js"></script>
+    <!-- Select -->
+    <script src="../static/Theme/scripts/select/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../static/Theme/scripts/select/bootstrap-select/dist/js/i18n/defaults-zh_CN.min.js"></script>
+    <!-- Skycons -->
+    <script src="../static/Theme/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="../static/Theme/vendors/Flot/jquery.flot.js"></script>
+    <script src="../static/Theme/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="../static/Theme/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="../static/Theme/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="../static/Theme/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="../static/Theme/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="../static/Theme/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="../static/Theme/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="../static/Theme/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="../static/Theme/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="../static/Theme/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="../static/Theme/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../static/Theme/vendors/moment/min/moment.min.js"></script>
+    <script src="../static/Theme/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- Icons -->
+    <script src="../static/Theme/scripts/icons/feature/feather.min.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../static/Theme/build/js/custom.min.js"></script>
+
+    <!--  4.9版本引入的文件 -->
+{#    <link rel="stylesheet" href="http://localhost/arcgisforjs/4.9/dijit/themes/claro/claro.css" />#}
+{#    <link rel="stylesheet" href="http://localhost/arcgisforjs/4.9/esri/css/main.css" />#}
+{#    <script src="http://127.0.0.1/arcgisforjs/4.9/dojo/dojo.js"></script>#}
+{#    <script  type="text/Javascript" src="http://127.0.0.1/arcgisforjs/4.9/init.js"></script>#}
+
+    <!-- 4.10版本引入的文件-->
+{#    <link rel="stylesheet" href="http://127.0.0.1/arcgisforjs/4.10/dijit/themes/claro/claro.css" />#}
+    <link rel="stylesheet" href="http://127.0.0.1/arcgisforjs/4.10/esri/css/main.css" />
+    <script src="http://127.0.0.1/arcgisforjs/4.10/dojo/dojo.js"></script>
+{#    <script src="https://127.0.0.1/arcgisforjs/4.10/"></script>#}
+    <!-- import easyui -->
+    <link rel="stylesheet" type="text/css" href='http://localhost/jq/resources/jquery/themes/gray/easyui.css'>
+    <link rel="stylesheet" type="text/css" href="http://localhost/jq/resources/jquery/themes/icon.css">
+    <script type="text/javascript" src='http://localhost/jq/resources/jquery/jquery.easyui.min.js'></script>
+    <script type="text/javascript" src='http://localhost/jq/resources/jquery/locale/easyui-lang-zh_CN.js' charset="utf-8"></script>
+     <!--  引入工程文件 -->
+    <link rel="stylesheet" href="../static/css/style.css"></link>
+    <script type="text/javascript" src="../static/js/Main.js"></script>
+    <script type="text/javascript" src="../static/js/MapConfig.js"></script>
+    <script type="text/javascript" src="../static/js/Tools/maptools.js"></script>
+    <script type="text/javascript" src="../static/js/basicfunction/search_basic_function.js"></script>
+    <script type="text/javascript" src="../static/js/basicfunction/measure_basic_function.js"></script>
+
+
+
+</body>
+
+</html>

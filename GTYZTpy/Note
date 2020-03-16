@@ -1,0 +1,7 @@
+1.geojson 和  shp互转需要的包
+需要gdal
+(1)cd(2)pip install GDAL-2.2.4-cp27-none-win32.whl 注意none
+2.geojson to esri json 用到static/js/jsonConverters.js
+
+
+
