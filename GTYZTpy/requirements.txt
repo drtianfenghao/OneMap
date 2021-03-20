@@ -13,7 +13,7 @@ futures==3.0.3
 GDAL==2.2.4
 idna==2.7
 imagesize==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.1.0
 matplotlib==1.4.3
 networkx==2.2
