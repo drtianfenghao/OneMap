@@ -23,7 +23,7 @@ packaging==18.0
 pandas==0.16.1
 pgmpy==0.1.6
 prettytable==0.7.2
-py==1.4.14
+py==1.10.0
 Pygments==2.2.0
 pyparsing==2.0.3
 pyshp==2.0.1
