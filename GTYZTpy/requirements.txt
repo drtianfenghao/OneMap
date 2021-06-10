@@ -7,7 +7,7 @@ colorama==0.4.0
 coverage==4.5.2
 daft==0.0.4
 decorator==4.3.0
-Django==1.8.2
+Django==2.2.24
 docutils==0.14
 futures==3.0.3
 GDAL==2.2.4
